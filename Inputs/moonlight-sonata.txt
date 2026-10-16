@@ -1,0 +1,147 @@
+// Rainbow Keys song sheet (plain text). Edit it in any text editor or in the game.
+// TREBLE CLEF (right hand):  RH: = melody   RHA: = accompaniment
+// BASS CLEF (left hand):     LH: = bass line   LHA: = accompaniment   LHM: = melody
+// BG: = backing, always played for you.   perfect: 45 = this song's Perfect window in ms (default 40-50)
+// Letters are the 7 lanes; a number after a letter is its octave (C4 = middle C).
+// -  one more beat    /  half as long    .  dotted    :1/3  one third of a beat (triplet)    r  rest
+// [C E G] = notes played together.  | = bar line.  Lines starting with // are comments.
+// A blank line starts a new paragraph: all hands start it together, like a new line of printed music.
+// See "Rainbow Keys sheet guide.pdf" in this folder for everything else (unit:, time changes, ...).
+// Beethoven, Piano Sonata No. 14 "Moonlight", 1st movement (complete). Key E major / C# minor: every F C G D is sharp.
+
+title: Moonlight Sonata
+by: Ludwig van Beethoven
+tempo: 54 Adagio sostenuto
+time: 2/2
+key: E
+
+RHA: G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 | G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3
+LH: [C2 C3]--- | [B1 B2]---
+
+RHA: A3:1/3 C:1/3 E:1/3 A3:1/3 C:1/3 E:1/3 A3:1/3 Dn:1/3 F:1/3 A3:1/3 Dn:1/3 F:1/3 | G3:1/3 B#3:1/3 F:1/3 G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 D:1/3 F3:1/3 B#3:1/3 D:1/3
+LH: [A1 A2]- [F1 F2]- | [G1 G2]- [G1 G2]-
+
+RH: r-- G/. G// | G-- G/. G//
+RHA: E3:1/3 G3:1/3 C:1/3 G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 | G3:1/3 D:1/3 F:1/3 G3:1/3 D:1/3 F:1/3 G3:1/3 D:1/3 F:1/3 G3:1/3 D:1/3 F:1/3
+LH: [C2 G2 C3]--- | [B#1 G2 B#2]---
+
+RH: G- A- | G- F B
+RHA: G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 A3:1/3 C:1/3 F:1/3 A3:1/3 C:1/3 F:1/3 | G3:1/3 B3:1/3 E:1/3 G3:1/3 B3:1/3 E:1/3 A3:1/3 B3:1/3 D:1/3 A3:1/3 B3:1/3 D:1/3
+LH: [C2 C3]- [F1 F2]- | [B1 B2]- [B1 B2]-
+
+RH: E r-- | r-- Gn/. Gn//
+RHA: G3:1/3 B3:1/3 E:1/3 G3:1/3 B3:1/3 E:1/3 G3:1/3 B3:1/3 E:1/3 G3:1/3 B3:1/3 E:1/3 | Gn3:1/3 B3:1/3 E:1/3 Gn3:1/3 B3:1/3 E:1/3 Gn3:1/3 B3:1/3 E:1/3 Gn3:1/3 B3:1/3 E:1/3
+LH: [E2 E3]--- | [E2 E3]---
+
+RH: Gn-- Gn/. Gn// | Gn-- F
+RHA: Gn3:1/3 B3:1/3 Fn:1/3 Gn3:1/3 B3:1/3 Fn:1/3 Gn3:1/3 B3:1/3 Fn:1/3 Gn3:1/3 B3:1/3 Fn:1/3 | Gn3:1/3 Cn:1/3 E:1/3 Gn3:1/3 Cn:1/3 E:1/3 Gn3:1/3 C:1/3 E:1/3 F3:1/3 C:1/3 E:1/3
+LH: [Dn2 Dn3]--- | [Cn2 Cn3] [B1 B2] [A#1 A#2]-
+
+RH: F- Gn E | F- F-
+LH: [B1 B2]- E2 Gn2 | F2- [F1 F2]-
+LHA: F3:1/3 B3:1/3 Dn:1/3 F3:1/3 B3:1/3 Dn:1/3 Gn3:1/3 B3:1/3 C:1/3 E3:1/3 B3:1/3 C:1/3 | F3:1/3 B3:1/3 Dn:1/3 F3:1/3 B3:1/3 Dn:1/3 F3:1/3 A#3:1/3 C:1/3 F3:1/3 A#3:1/3 C:1/3
+
+RH: B3 r- B | Cn5-- A#
+RHA: B3:1/3 Dn:1/3 F:1/3 B3:1/3 Dn:1/3 F:1/3 B3:1/3 D:1/3 F:1/3 B3:1/3 D:1/3 F:1/3 | B3:1/3 E:1/3 Gn:1/3 B3:1/3 E:1/3 Gn:1/3 B3:1/3 E:1/3 Gn:1/3 B3:1/3 E:1/3 Gn:1/3
+LH: [B1 B2]---- [E2 E3] [Gn2 Gn3] [E2 E3]
+
+RH: B-- B | Cn5-- A#
+RHA: B3:1/3 D:1/3 F:1/3 B3:1/3 D:1/3 F:1/3 B3:1/3 D:1/3 F:1/3 B3:1/3 D:1/3 F:1/3 | B3:1/3 E:1/3 Gn:1/3 B3:1/3 E:1/3 Gn:1/3 B3:1/3 E:1/3 Gn:1/3 B3:1/3 E:1/3 Gn:1/3
+LH: [B1 B2]---- [E2 E3] [Gn2 Gn3] [E2 E3]
+
+RH: B- B- | B- A-
+RHA: B3:1/3 D:1/3 F:1/3 B3:1/3 D:1/3 F:1/3 B3:1/3 Dn:1/3 E#:1/3 B3:1/3 Dn:1/3 E#:1/3 | B3:1/3 C:1/3 G:1/3 B3:1/3 C:1/3 G:1/3 A3:1/3 C:1/3 F:1/3 A3:1/3 C:1/3 F:1/3
+LH: [B1 B2]- [G1 G2]- | [E#1 E#2]- [F1 F2]-
+
+RH: Gn- F- | C- C C
+LH: [B1 B2]- [B#1 B#2]- | C2- C2-
+LHA: Gn3:1/3 B3:1/3 Dn:1/3 Gn3:1/3 B3:1/3 Dn:1/3 F3:1/3 A3:1/3 D:1/3 F3:1/3 A3:1/3 D:1/3 | C3:1/3 F3:1/3 A3:1/3 C3:1/3 F3:1/3 A3:1/3 C3:1/3 F3:1/3 G3:1/3 C3:1/3 E#3:1/3 G3:1/3
+
+RH: F3 r- C5/. C5// | C5-- C5/. C5//
+RHA: F3:1/3 A3:1/3 C:1/3 A3:1/3 C:1/3 F:1/3 C:1/3 F:1/3 A:1/3 C:1/3 F:1/3 A:1/3 | C:1/3 G:1/3 B:1/3 C:1/3 G:1/3 B:1/3 C:1/3 G:1/3 B:1/3 C:1/3 G:1/3 B:1/3
+LH: [F1 C2 F2]--- | [E#2 C3 E#3]---
+
+RH: C5- B# C5 | D5-- D5
+RHA: C:1/3 F:1/3 A:1/3 C:1/3 F:1/3 A:1/3 B#3:1/3 F:1/3 A:1/3 C:1/3 F:1/3 A:1/3 | D:1/3 F:1/3 G:1/3 D:1/3 F:1/3 G:1/3 D:1/3 F:1/3 G:1/3 D:1/3 F:1/3 G:1/3
+LH: [F2 F3]- [D2 D3] [C2 C3] | [B#1 G2 B#2]-- [B#1 G2 B#2]
+
+RH: E5- D5 C5 | r G A F
+RHA: E:1/3 G:1/3 C5:1/3 E:1/3 G:1/3 C5:1/3 D:1/3 F:1/3 A:1/3 C:1/3 E:1/3 A#:1/3 | B#:1/3 B#3:1/3 D:1/3 G:1/3 B#3:1/3 D:1/3 A:1/3 B#3:1/3 D:1/3 F:1/3 B#3:1/3 D:1/3
+LH: [C2 G2 C3]- [F1 F2] [F##1 F##2] | [G1 G2]---
+
+RH: r---- C5 E5 C5
+RHA: r:1/3 B#3:1/3 D:1/3 G3:1/3 B#3:1/3 D:1/3 A3:1/3 B#3:1/3 D:1/3 F3:1/3 B#3:1/3 D:1/3 | E3:1/3 E:1/3 G:1/3 C5:1/3 E:1/3 G:1/3 E5:1/3 E:1/3 G:1/3 C5:1/3 E:1/3 G:1/3
+LH: [G1 G2]--- | [G1 G2]---
+LHA: r G3 A3 F3 | r---
+
+RHA: r:1/3 E3:1/3 G3:1/3 C:1/3 E3:1/3 G3:1/3 E:1/3 E3:1/3 G3:1/3 C:1/3 E3:1/3 G3:1/3 | D3:1/3 A3:1/3 F3:1/3 B#3:1/3 A3:1/3 D:1/3 B#3:1/3 F:1/3 D:1/3 A:1/3 F:1/3 B#:1/3
+LH: [G1 G2]--- | [G1 G2]---
+LHA: r C E C | r---
+
+RHA: E3:1/3 C:1/3 G3:1/3 E:1/3 C:1/3 G:1/3 E:1/3 C5:1/3 G:1/3 E5:1/3 C5:1/3 G:1/3 | C:1/3 F##:1/3 E:1/3 A#:1/3 F##:1/3 C5:1/3 A#:1/3 E5:1/3 C5:1/3 F##5:1/3 E5:1/3 A#5:1/3
+LH: [G1 G2]--- | [G1 G2]---
+
+RHA: F:1/3 B#:1/3 A:1/3 D5:1/3 B#:1/3 F5:1/3 D5:1/3 A5:1/3 F5:1/3 B#5:1/3 A5:1/3 D6:1/3 | B#5:1/3 F5:1/3 A5:1/3 D5:1/3 F5:1/3 B#:1/3 D5:1/3 A:1/3 B#:1/3 F:1/3 A:1/3 D:1/3 | F:1/3 B#3:1/3 D:1/3 A3:1/3 B#3:1/3 F3:1/3 A3:1/3 D3:1/3 F3:1/3 C3:1/3 F3:1/3 A3:1/3
+RHA2: r:31/3 D3:2/3 C3
+LH: [G1 G2]:12
+
+RHA: B#2:1/3 F3:1/3 G3:1/3 A3:1/3 G3:1/3 F3:1/3 D3:1/3 F3:1/3 A3:1/3 C3:1/3 F3:1/3 A3:1/3 | B#2:1/3 F3:1/3 G3:1/3 A3:1/3 G3:1/3 F3:1/3 Dn3:1/3 F3:1/3 A3:1/3 C3:1/3 F3:1/3 A3:1/3
+LH: [G1 G2]--- | [G1 G2]---
+LHA: B#2- D3 C3 | B#2- Dn3 C3
+
+RHA: B#2:1/3 F3:1/3 G3:1/3 A3:1/3 G3:1/3 F3:1/3 C3:1/3 E3:1/3 C:1/3 C3:1/3 E3:1/3 C:1/3 | r---
+LH: B#2- r- | [F1 F2]- [G1 G2]-
+LHA: [G1 G2]- [A1 A2]- | D3:1/3 A3:1/3 C:1/3 D3:1/3 A3:1/3 C:1/3 D3:1/3 G3:1/3 B#3:1/3 D3:1/3 F3:1/3 B#3:1/3
+
+RH: r-- G/. G// | G-- G/. G//
+RHA: r G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 | G3:1/3 D:1/3 F:1/3 G3:1/3 D:1/3 F:1/3 G3:1/3 D:1/3 F:1/3 G3:1/3 D:1/3 F:1/3
+LH: [C2 G2 C3]--- | [B#1 G2 B#2]---
+LHA: E3:1/3 G3:1/3 C:1/3 r-- | r---
+
+RH: G- A- | G- F B
+RHA: G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 A3:1/3 C:1/3 F:1/3 A3:1/3 C:1/3 F:1/3 | G3:1/3 B3:1/3 E:1/3 G3:1/3 B3:1/3 E:1/3 A3:1/3 B3:1/3 D:1/3 A3:1/3 B3:1/3 D:1/3
+LH: [C2 C3]- [F1 F2]- | [B1 B2]- [B1 B2]-
+
+RH: E r- B/. B// | B-- B/. B//
+RHA: G3:1/3 B3:1/3 E:1/3 B3:1/3 E:1/3 G:1/3 B3:1/3 E:1/3 G:1/3 B3:1/3 E:1/3 G:1/3 | B3:1/3 F:1/3 A:1/3 B3:1/3 F:1/3 A:1/3 B3:1/3 F:1/3 A:1/3 B3:1/3 F:1/3 A:1/3
+LH: [E2 E3]--- | [D2 D3]---
+
+RH: B- B# C5 | D5- E5-
+RHA: B3:1/3 E:1/3 G:1/3 B3:1/3 E:1/3 G:1/3 B#3:1/3 F:1/3 G:1/3 C:1/3 E:1/3 G:1/3 | D:1/3 F:1/3 G:1/3 D:1/3 F:1/3 G:1/3 E:1/3 G:1/3 C5:1/3 E:1/3 G:1/3 C5:1/3
+LH: [E2 E3]- [D2 D3] [C2 C3] | [B#1 G2 B#2]- [C2 G2 C3]-
+
+RH: Dn5- B#- | C5-- C5 | Dn5-- B#
+RHA: Dn:1/3 F:1/3 A:1/3 Dn:1/3 F:1/3 A:1/3 B#3:1/3 F:1/3 G:1/3 B#3:1/3 F:1/3 G:1/3 | C:1/3 E:1/3 G:1/3 C:1/3 E:1/3 G:1/3 C:1/3 E#:1/3 G:1/3 C:1/3 E#:1/3 G:1/3 | C:1/3 F:1/3 A:1/3 C:1/3 F:1/3 A:1/3 C:1/3 F:1/3 A:1/3 C:1/3 F:1/3 A:1/3
+LH: [F1 F2]- [G1 G2]- | [C2 C3]---- [F2 F3] [A2 A3] [F2 F3]
+
+RH: C5-- C5 | Dn5-- B#
+RHA: C:1/3 E#:1/3 G:1/3 C:1/3 E#:1/3 G:1/3 C:1/3 E#:1/3 G:1/3 C:1/3 E#:1/3 G:1/3 | C:1/3 F:1/3 A:1/3 C:1/3 F:1/3 A:1/3 C:1/3 F:1/3 A:1/3 C:1/3 F:1/3 A:1/3
+LH: [C2 C3]---- [F2 F3] [A2 A3] [F2 F3]
+
+RH: C5- C5- | B-- B
+RHA: C:1/3 E#:1/3 G:1/3 C:1/3 E#:1/3 G:1/3 C:1/3 F:1/3 A:1/3 C:1/3 F:1/3 A:1/3 | B3:1/3 F:1/3 A:1/3 B3:1/3 F:1/3 A:1/3 B3:1/3 F:1/3 A:1/3 B3:1/3 E:1/3 G:1/3
+LH: [C2 C3]- [F1 F2]- | [D2 D3]-- [E2 E3]
+
+RH: A A G G | F- G A
+RHA: A3:1/3 E:1/3 G:1/3 A3:1/3 D:1/3 F:1/3 G3:1/3 D:1/3 F:1/3 G3:1/3 C:1/3 E:1/3 | F3:1/3 C:1/3 D:1/3 F3:1/3 C:1/3 D:1/3 G3:1/3 C:1/3 D:1/3 A3:1/3 C:1/3 D:1/3
+LH: [C2 C3] [D2 D3] [B#1 B#2] [C2 C3] | [A1 A2]- [G1 G2] [F1 F2]
+
+RH: G- G- | C r--
+RHA: G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 F3:1/3 B#3:1/3 D:1/3 F3:1/3 B#3:1/3 D:1/3 | r G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3 G3:1/3 C:1/3 E:1/3
+LH: [G1 G2]- [G1 G2]- | B#1---
+LHA: r--- E3:1/3 G3:1/3 C:1/3 r--
+
+RHA: G3:1/3 D:1/3 F:1/3 G3:1/3 D:1/3 F:1/3 G3:1/3 D:1/3 F:1/3 G3:1/3 D:1/3 F:1/3 | G3:1/3 E:1/3 C:1/3 G:1/3 E:1/3 C5:1/3 G:1/3 E5:1/3 C5:1/3 G5:1/3 E5:1/3 C5:1/3
+LH: C2--- | C2---
+LHA: G2-- G2/. G2// | G2-- G2/. G2//
+
+RHA: B#:1/3 D5:1/3 A:1/3 B#:1/3 F:1/3 A:1/3 D:1/3 F:1/3 A3:1/3 A3:1/3 G3:1/3 F3:1/3 | [E3 C]:1/3 E:1/3 C:1/3 G:1/3 E:1/3 C5:1/3 G:1/3 E5:1/3 C5:1/3 G5:1/3 E5:1/3 C5:1/3
+LH: G1--- | C2---
+LHA: G2-- B#3 | G2-- G2/. G2//
+
+RHA: B#:1/3 D5:1/3 A:1/3 B#:1/3 F:1/3 A:1/3 D:1/3 F:1/3 A3:1/3 A3:1/3 G3:1/3 F3:1/3 | r---
+LH: [C2 G2]- r- | r- [C3 E3 G3 C]-
+LHA: r:1/3 C3:1/3 E3:1/3 G3:1/3 E3:1/3 C3:1/3 G2:1/3 C3:1/3 G2:1/3 E2:1/3 G2:1/3 E2:1/3 | C2- [C2 G2]-
+
+LH: [C2 G2 C3]---
+LHA: [E3 G3 C]---

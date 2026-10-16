@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rainbow Keys</title>
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<main id="app">
+
+  <!-- ============ SPLASH ============ -->
+  <section class="screen active" id="screen-splash">
+    <div class="splash">
+      <h1 class="logo" aria-label="Rainbow Keys"></h1>
+      <p class="tag">A 7-KEY PIANO RHYTHM GAME</p>
+      <div class="pxbar" aria-hidden="true"><span id="load-fill"></span></div>
+      <p class="blink-text" id="splash-hint">LOADING PIANO…</p>
+    </div>
+  </section>
+
+  <!-- ============ MENU ============ -->
+  <section class="screen" id="screen-menu">
+    <div class="menu">
+      <h1 class="logo big" aria-label="Rainbow Keys"></h1>
+      <p class="tag">Tiles fly down the rainbow. Hit the key when they reach the line.</p>
+      <nav class="menu-list" id="menu-list" aria-label="Main menu">
+        <button class="menu-btn" data-action="start"><span class="mb-cur" aria-hidden="true">&gt;</span><span class="mb-label">START</span></button>
+        <button class="menu-btn" data-action="settings"><span class="mb-cur" aria-hidden="true">&gt;</span><span class="mb-label">SETTINGS</span></button>
+        <button class="menu-btn" data-action="exit"><span class="mb-cur" aria-hidden="true">&gt;</span><span class="mb-label">EXIT</span></button>
+      </nav>
+      <div class="menu-foot">
+        <button class="link" data-action="help">How to play</button>
+        <span>·</span>
+        <button class="link" data-action="credits">Credits</button>
+        <span>·</span>
+        <span class="version">v1-4</span>
+      </div>
+    </div>
+    <div class="menu-piano"><div id="menu-piano"></div><p class="hint">↑ ↓ choose · Enter select · play the keys to warm up</p></div>
+  </section>
+
+  <!-- ============ SONGS ============ -->
+  <section class="screen" id="screen-songs">
+    <header class="topbar">
+      <button class="pxbtn small" data-action="menu">&lt; MENU</button>
+      <h2 class="screen-title">SONGS</h2>
+      <span class="spacer"></span>
+      <button class="pxbtn small" id="inputs-btn" title="The Inputs folder with your .txt sheets">INPUTS</button>
+      <button class="pxbtn small accent" id="upload-btn">+ UPLOAD SHEET</button>
+    </header>
+    <div class="carousel" id="carousel">
+      <button class="car-nav prev" id="car-prev" aria-label="Previous song">&lt;</button>
+      <div class="car-track" id="car-track"></div>
+      <button class="car-nav next" id="car-next" aria-label="Next song">&gt;</button>
+    </div>
+    <div class="car-dots" id="car-dots"></div>
+    <div class="song-detail panel" id="song-detail">
+      <div class="sd-info">
+        <h3 class="sd-title" id="sd-title"></h3>
+        <p class="sd-sub" id="sd-sub"></p>
+        <p class="sd-desc" id="sd-desc"></p>
+        <div class="chips" id="sd-chips"></div>
+      </div>
+      <div class="sd-play">
+        <div class="sd-best" id="sd-best"></div>
+        <div class="sd-row"><span class="sd-label">PART</span>
+          <div class="seg part-seg" id="part-seg">
+            <button data-v="treble" title="Right hand: everything on the top staff"><span class="pl">TREBLE CLEF</span><small>RIGHT HAND</small></button>
+            <button data-v="bassclef" title="Left hand: everything on the bottom staff"><span class="pl">BASS CLEF</span><small>LEFT HAND</small></button>
+            <button data-v="both" title="Both hands together"><span class="pl">BOTH</span><small>HANDS</small></button>
+          </div>
+        </div>
+        <div class="sd-row" id="layer-row" hidden><span class="sd-label">ADVANCED</span>
+          <div class="seg layer-seg" id="layer-seg" title="Pick one or more layers; they override the hand choice">
+            <button data-v="melody" title="The tune, in either hand">MELODY</button>
+            <button data-v="accomp" title="Repeating figures and chord notes">ACCOMP.</button>
+            <button data-v="bass" title="The lowest line, left hand">BASS</button>
+          </div>
+        </div>
+        <div class="sd-row"><span class="sd-label">MODE</span>
+          <div class="seg" id="mode-seg">
+            <button data-v="normal" title="Scored: Perfect, Great, Good">PLAY</button>
+            <button data-v="practice" title="The song waits for the right keys">PRACTICE</button>
+            <button data-v="demo" title="The song plays itself">WATCH</button>
+          </div>
+        </div>
+        <div class="sd-row"><span class="sd-label">VIEW</span>
+          <div class="seg" id="view-seg">
+            <button data-v="piano" title="Piano keys at the bottom">PIANO</button>
+            <button data-v="lights" title="Just lanes that light up">LIGHTS</button>
+          </div>
+        </div>
+        <div class="sd-row"><span class="sd-label">SPEED</span><input type="range" id="rate" min="50" max="100" step="5" aria-label="Song speed"><output id="rate-out">100%</output></div>
+        <div class="sd-actions">
+          <button class="pxbtn" id="sd-edit">EDIT</button>
+          <button class="pxbtn primary big" id="sd-start">START &gt;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section class="screen" id="screen-settings">
+    <header class="topbar">
+      <button class="pxbtn small" data-action="menu">&lt; MENU</button>
+      <h2 class="screen-title">SETTINGS</h2>
+      <span class="spacer"></span>
+      <span class="hint">Saved automatically</span>
+    </header>
+    <div class="settings-grid">
+      <div class="panel">
+        <h3 class="panel-title c1">SOUND</h3>
+        <label class="row"><span>Master volume</span><input type="range" min="0" max="100" data-setting="master"><output></output></label>
+        <label class="row"><span>Your notes</span><input type="range" min="0" max="100" data-setting="piano"><output></output></label>
+        <label class="row"><span>Backing part</span><input type="range" min="0" max="100" data-setting="backing"><output></output></label>
+        <label class="row"><span>Menu &amp; beeps</span><input type="range" min="0" max="100" data-setting="sfx"><output></output></label>
+        <div class="row"><span>Instrument</span><div class="seg" data-setting="instrument"><button data-v="piano">PIANO</button><button data-v="chip">8-BIT</button></div></div>
+        <div class="row"><span>Key release</span><div class="seg" data-setting="release"><button data-v="short">SHORT</button><button data-v="natural">NORMAL</button><button data-v="pedal">PEDAL</button></div></div>
+        <label class="row"><span>Play the backing part</span><input type="checkbox" class="switch" data-setting="backingOn"></label>
+        <label class="row"><span>Menu sounds</span><input type="checkbox" class="switch" data-setting="menuSounds"></label>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel-title c3">TIMING</h3>
+        <div class="row"><span>Preset</span><div class="seg" data-setting="timingPreset"><button data-v="strict">STRICT</button><button data-v="normal">NORMAL</button><button data-v="relaxed">RELAXED</button><button data-v="custom">CUSTOM</button></div></div>
+        <label class="row"><span class="c-perfect">Perfect within</span><input type="range" min="20" max="150" step="5" data-setting="perfect"><output></output></label>
+        <label class="row"><span class="c-great">Great within</span><input type="range" min="40" max="250" step="5" data-setting="great"><output></output></label>
+        <label class="row"><span class="c-good">Good within</span><input type="range" min="60" max="350" step="5" data-setting="good"><output></output></label>
+        <label class="row"><span>Note speed</span><input type="range" min="1" max="10" data-setting="speed"><output></output></label>
+        <label class="row"><span>Timing offset</span><input type="range" min="-150" max="150" step="5" data-setting="offset"><output></output></label>
+        <div class="row"><span class="hint">+ if you tend to hit late, − if early</span><button class="pxbtn small" id="calibrate">CALIBRATE</button></div>
+        <label class="row"><span>Early / late readout</span><input type="checkbox" class="switch" data-setting="timingDetail"></label>
+      </div>
+
+      <div class="panel">
+        <h3 class="panel-title c5">DISPLAY</h3>
+        <div class="row"><span>Bottom of the lanes</span><div class="seg" data-setting="pianoView"><button data-v="true">PIANO</button><button data-v="false">LIGHTS</button></div></div>
+        <div class="row"><span>Text on tiles</span><div class="seg" data-setting="tileLabel"><button data-v="key">KEY</button><button data-v="note">NOTE</button><button data-v="both">BOTH</button><button data-v="none">NONE</button></div></div>
+        <div class="row"><span>Effects</span><div class="seg" data-setting="effects"><button data-v="full">FULL</button><button data-v="reduced">LESS</button></div></div>
+        <label class="row"><span>Show advanced parts<br><small class="hint">Melody / Accompaniment / Bass</small></span><input type="checkbox" class="switch" data-setting="advancedParts"></label>
+        <div class="view-demo" aria-hidden="true">
+          <div class="vd-lanes"><i></i><i class="lit"></i><i></i><i class="lit2"></i><i></i><i></i><i></i></div>
+          <div class="vd-base" id="vd-base"></div>
+        </div>
+      </div>
+
+      <div class="panel wide">
+        <h3 class="panel-title c2">CONTROLS <span class="hint">— click a key to change it, then press the new key</span></h3>
+        <div class="binds" id="binds"></div>
+        <div class="row wrap"><span>Presets</span><div class="chips" id="bind-presets"></div></div>
+        <div id="settings-piano"></div>
+      </div>
+
+      <div class="panel wide">
+        <h3 class="panel-title c6">YOUR DATA</h3>
+        <p class="hint">Songs, scores and settings are saved in this browser for this address. Make a backup file to keep them safe or move them to another computer.</p>
+        <div class="row end">
+          <button class="pxbtn small" id="backup">BACKUP</button>
+          <button class="pxbtn small" id="restore">RESTORE</button>
+          <button class="pxbtn small danger" id="reset-settings">RESET SETTINGS</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDITOR ============ -->
+  <section class="screen" id="screen-editor" data-tab="sheet">
+    <header class="ed-top">
+      <button class="pxbtn small" data-ed="back">&lt; SONGS</button>
+      <input id="ed-title" class="ed-title" maxlength="80" aria-label="Song title" spellcheck="false">
+      <span id="ed-dirty" class="ed-dirty"></span>
+      <div class="seg ed-tabs">
+        <button data-ed="tabSheet" title="Type or paste the notes">SHEET</button>
+        <button data-ed="tabRoll" title="Fix notes on a grid">ROLL</button>
+      </div>
+      <span class="spacer"></span>
+      <button class="pxbtn small" data-ed="undo" title="Undo (Ctrl+Z)">UNDO</button>
+      <button class="pxbtn small" data-ed="listen" title="Listen (Enter, or Ctrl+Enter in the sheet)">LISTEN</button>
+      <button class="pxbtn small" data-ed="test" title="Play it in the game">TEST PLAY</button>
+      <button class="pxbtn small primary" data-ed="save" title="Save (Ctrl+S)">SAVE</button>
+      <div class="more">
+        <button class="pxbtn small" id="ed-more" aria-label="More">...</button>
+        <div class="menu-pop" id="ed-menu">
+          <button data-ed="redo">Redo</button>
+          <button data-ed="rebuild">Tidy up the sheet text</button>
+          <button data-ed="exportSheet">Download sheet (.txt)</button>
+          <button data-ed="exportChart">Download chart (.json)</button>
+          <button data-ed="importInto">Load a sheet or chart into this song…</button>
+          <button data-ed="addRef">Add / replace sheet picture…</button>
+          <button data-ed="removeRef">Remove sheet picture…</button>
+          <button data-ed="clear">Clear all notes…</button>
+          <button data-ed="remove" class="danger">Delete…</button>
+        </div>
+      </div>
+    </header>
+    <div class="ed-props">
+      <label class="field"><span>BY</span><input id="ed-composer" maxlength="80" spellcheck="false"></label>
+      <label class="field"><span>KEY</span><select id="ed-key"></select></label>
+      <label class="field small"><span>TIME</span><select id="ed-time"><option>4/4</option><option>3/4</option><option>2/4</option><option>2/2</option><option>6/8</option><option>3/8</option><option>12/8</option></select></label>
+      <label class="field small"><span>BPM</span><input id="ed-bpm" type="number" min="20" max="320"></label>
+      <label class="field small perfect-field"><span>PERFECT (ms)</span><input id="ed-perfect" type="number" min="20" max="150" step="5" title="How close to the beat counts as Perfect for this song. Default is 40–50 ms."></label>
+      <span class="hint ed-perfect-hint" id="ed-perfect-hint"></span>
+      <label class="field small"><span>LEVEL</span><select id="ed-diff"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></label>
+      <button class="pxbtn small" data-ed="tempo" title="Add a speed change at the cursor">+ SPEED CHANGE</button>
+      <button class="pxbtn small" id="ed-ref-btn" data-ed="toggleRef" title="Show the picture of your sheet beside the editor">SHEET PICTURE</button>
+      <div class="ed-tip" id="ed-tip"></div>
+    </div>
+    <div class="ed-body">
+      <aside class="ed-ref" id="ed-ref" hidden>
+        <div class="ed-ref-bar">
+          <span>YOUR SHEET</span><span class="spacer"></span>
+          <button class="pxbtn tiny" data-ed="refOut" aria-label="Zoom out">−</button>
+          <span id="ed-ref-zoom">100%</span>
+          <button class="pxbtn tiny" data-ed="refIn" aria-label="Zoom in">+</button>
+        </div>
+        <div class="ed-ref-pages" id="ed-ref-pages"></div>
+      </aside>
+      <div class="ed-pane ed-sheet">
+        <div class="sheet-bar">
+          <span id="sheet-status" class="sheet-status"></span>
+          <span class="spacer"></span>
+          <button class="pxbtn small" data-ed="example">EXAMPLE</button>
+          <button class="pxbtn small" data-ed="guide">HOW TO WRITE NOTES</button>
+          <button class="pxbtn small" data-ed="listen">LISTEN</button>
+        </div>
+        <div class="sheet-main">
+          <textarea id="ed-text" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Song sheet"></textarea>
+          <aside class="sheet-guide" id="sheet-guide">
+            <h4>WRITING NOTES</h4>
+            <table>
+              <tr><td><code>C D E F G A B</code></td><td>one beat each</td></tr>
+              <tr><td><code>C5</code> <code>G3</code></td><td>octave number (4 is the middle)</td></tr>
+              <tr><td><code>F#</code> <code>Bb</code> <code>En</code></td><td>sharp, flat, natural</td></tr>
+              <tr><td><code>C-</code> <code>C---</code></td><td>2 beats, 4 beats</td></tr>
+              <tr><td><code>C/</code> <code>C//</code></td><td>half a beat, a quarter beat</td></tr>
+              <tr><td><code>C.</code></td><td>dotted (1½ beats)</td></tr>
+              <tr><td><code>C:3</code> <code>C:1/3</code></td><td>exact length (in beats, unless <code>unit:</code> says otherwise)</td></tr>
+              <tr><td><code>C:1/2-</code></td><td>a dash after an exact length is a tie mark; it adds nothing</td></tr>
+              <tr><td><code>r</code> <code>r-</code></td><td>rest (silence)</td></tr>
+              <tr><td><code>[C E G]</code> <code>C+E+G</code></td><td>chord (together)</td></tr>
+              <tr><td><code>|</code></td><td>bar line (optional)</td></tr>
+              <tr><td><code>do re mi fa sol la si</code></td><td>also fine</td></tr>
+              <tr><td><code>RH:</code></td><td>treble clef melody (right hand)</td></tr>
+              <tr><td><code>RHA:</code></td><td>treble clef accompaniment (right hand)</td></tr>
+              <tr><td><code>LH:</code></td><td>bass clef bass line (left hand)</td></tr>
+              <tr><td><code>LHA:</code></td><td>bass clef accompaniment (left hand)</td></tr>
+              <tr><td><code>LHM:</code></td><td>bass clef melody (left hand)</td></tr>
+              <tr><td><code>BG:</code></td><td>backing, always played for you</td></tr>
+              <tr><td><code>{tempo 70}</code></td><td>change speed here</td></tr>
+              <tr><td>blank line</td><td>new paragraph: all hands start it together, like a new line of printed music</td></tr>
+              <tr><td><code>time: 2/2</code> <code>tempo: 38</code></td><td>on their own line after some notes: a time or speed change from there</td></tr>
+              <tr><td><code>// note</code></td><td>a comment, ignored</td></tr>
+            </table>
+            <h4>TOP LINES</h4>
+            <p><code>title:</code> <code>by:</code> <code>tempo: 90</code> <code>time: 3/4</code> <code>key: G</code> (in G every F is F♯ unless you write <code>Fn</code>)</p>
+            <p><code>perfect: 45</code> sets this song's Perfect window in ms (default is 40–50).</p>
+            <h4>LENGTHS AFTER ":"</h4>
+            <p><code>unit: beat</code> (default): <code>:1</code> is one beat (a quarter note), <code>:1/2</code> an eighth.<br><code>unit: whole</code>: lengths are note values, <code>:1/4</code> quarter, <code>:1/8</code> eighth, <code>:1/2</code> half.<br><code>unit: bar</code>: <code>:1/12</code> is a twelfth of the bar.<br>Leave it out and the game picks the one that makes your bars add up.</p>
+            <p>Full guide: <code>Inputs/Rainbow Keys sheet guide.pdf</code></p>
+            <h4>NUMBERS (简谱)</h4>
+            <p>Start with <code>1=C</code> (or <code>1=G</code>…) and write <code>1 2 3 4 5 6 7</code>. <code>0</code> is a rest, <code>-</code> holds, <code>5'</code> is higher, <code>5,</code> is lower.</p>
+          </aside>
+        </div>
+        <div class="sheet-foot">
+          <div class="sheet-preview" id="sheet-preview" aria-label="Your notes as keys"></div>
+          <ul class="sheet-warn" id="sheet-warn" hidden></ul>
+        </div>
+      </div>
+      <div class="ed-pane ed-roll"><canvas id="ed-roll" aria-label="Note grid"></canvas></div>
+    </div>
+    <footer class="ed-bottom">
+      <span class="ed-selinfo" id="ed-selinfo">New notes</span>
+      <div class="ed-durs" id="ed-durs" aria-label="Note length"></div>
+      <div class="ed-group"><span class="lbl">OCT</span><button class="pxbtn tiny" data-ed="octDown" title="Lower octave (PageDown)">−</button><b id="ed-octave">4</b><button class="pxbtn tiny" data-ed="octUp" title="Higher octave (PageUp)">+</button></div>
+      <div class="seg" id="ed-acc" title="Sharps and flats">
+        <button data-v="key" title="Follow the key signature">KEY</button><button data-v="f">♭</button><button data-v="n">♮</button><button data-v="s">♯</button>
+      </div>
+      <label class="ed-group" title="Which hand and layer a note belongs to"><span class="lbl">PART</span>
+        <select id="ed-part">
+          <option value="" hidden>(mixed)</option>
+          <optgroup label="Treble clef · right hand">
+            <option value="0">RH melody</option>
+            <option value="1">RH accompaniment</option>
+          </optgroup>
+          <optgroup label="Bass clef · left hand">
+            <option value="2">LH bass</option>
+            <option value="3">LH accompaniment</option>
+            <option value="4">LH melody</option>
+          </optgroup>
+          <option value="5">Backing (played for you)</option>
+        </select>
+      </label>
+      <button class="pxbtn small danger sel-only" data-ed="selDelete">DELETE</button>
+      <div class="ed-status"><span id="ed-pos"></span><span id="ed-count" class="hint"></span></div>
+      <button class="pxbtn small" data-ed="help">KEYS ?</button>
+    </footer>
+    <aside class="ed-help panel" id="ed-help">
+      <h4>ROLL SHORTCUTS</h4>
+      <dl>
+        <dt>Your 7 keys</dt><dd>add notes at the cursor (hold several for a chord)</dd>
+        <dt>Space</dt><dd>rest · <kbd>Backspace</kbd> undo</dd>
+        <dt>← →</dt><dd>move cursor, or move selected notes</dd>
+        <dt>↑ ↓</dt><dd>note length, or move selected notes up/down</dd>
+        <dt>PgUp PgDn</dt><dd>octave</dd>
+        <dt>Click</dt><dd>add · drag to move · drag the end to stretch</dd>
+        <dt>Drag empty</dt><dd>select a group · Shift adds</dd>
+        <dt>Double-click</dt><dd>switch a note to the next part (RH melody → RH accomp. → LH bass → LH accomp. → LH melody → backing)</dd>
+        <dt>Right-click</dt><dd>delete</dd>
+        <dt>Ctrl C / X / V</dt><dd>copy, cut, paste at cursor</dd>
+        <dt>Enter</dt><dd>listen from the cursor</dd>
+        <dt>Wheel</dt><dd>scroll · Ctrl+wheel zoom</dd>
+      </dl>
+    </aside>
+  </section>
+
+  <!-- ============ GAME ============ -->
+  <section class="screen" id="screen-game">
+    <div class="game-stage"><canvas id="game-canvas"></canvas></div>
+    <div class="hud">
+      <div class="hud-left">
+        <div class="hud-title" id="hud-title"></div>
+        <div class="hud-sub" id="hud-sub"></div>
+        <div class="pxbar thin"><span id="hud-prog"></span></div>
+      </div>
+      <div class="hud-right">
+        <div class="hud-score" id="hud-score">0</div>
+        <div class="hud-acc" id="hud-acc"></div>
+      </div>
+      <button class="pxbtn small hud-pause" id="hud-pause" aria-label="Pause (Esc)">II</button>
+    </div>
+    <div class="judge" id="judge" aria-live="polite">
+      <span class="j-word" id="j-word"></span>
+      <span class="j-detail" id="j-detail"></span>
+      <span class="j-combo" id="j-combo"></span>
+    </div>
+    <div class="wait-hint" id="wait-hint">PLAY THE GLOWING KEYS</div>
+    <div class="countdown" id="countdown"></div>
+    <div class="overlay" id="pause-overlay">
+      <div class="panel pause-card">
+        <h2 class="panel-title c3">PAUSED</h2>
+        <button class="menu-btn compact" data-pause="resume"><span class="mb-cur">&gt;</span><span class="mb-label">RESUME</span></button>
+        <button class="menu-btn compact" data-pause="restart"><span class="mb-cur">&gt;</span><span class="mb-label">RESTART</span></button>
+        <button class="menu-btn compact" data-pause="view"><span class="mb-cur">&gt;</span><span class="mb-label" id="pause-view">VIEW: PIANO</span></button>
+        <button class="menu-btn compact" data-pause="quit"><span class="mb-cur">&gt;</span><span class="mb-label">QUIT</span></button>
+        <p class="hint">Esc resume · R restart · V view · Q quit</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS ============ -->
+  <section class="screen" id="screen-results">
+    <div class="results">
+      <div class="res-left">
+        <p class="tag" id="res-mode"></p>
+        <h2 class="res-title" id="res-title"></h2>
+        <div class="grade" id="res-grade"></div>
+        <div class="badges" id="res-badges"></div>
+      </div>
+      <div class="res-right panel">
+        <div class="res-score"><span class="hint" id="res-score-label">SCORE</span><b id="res-score">0</b></div>
+        <div class="res-stats" id="res-stats"></div>
+        <div class="res-timing" id="res-timing"></div>
+        <div class="res-actions">
+          <button class="pxbtn" id="res-back">SONGS</button>
+          <button class="pxbtn" id="res-editor" hidden>BACK TO EDITOR</button>
+          <button class="pxbtn primary" id="res-retry">AGAIN (R)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HELP / CREDITS ============ -->
+  <section class="screen" id="screen-help">
+    <header class="topbar">
+      <button class="pxbtn small" data-action="menu">&lt; MENU</button>
+      <h2 class="screen-title" id="help-title">HOW TO PLAY</h2>
+    </header>
+    <div class="help">
+      <div id="help-play">
+        <div class="help-cols">
+          <div class="panel">
+            <h3 class="panel-title c1">THE KEYS</h3>
+            <p>Seven lanes, one for each note: <b class="c1">C</b> <b class="c2">D</b> <b class="c3">E</b> <b class="c4">F</b> <b class="c5">G</b> <b class="c6">A</b> <b class="c7">B</b>. Press the lane's key when a tile reaches the rainbow line. You can change the keys in Settings.</p>
+            <p>Sharps and flats sit on their letter's lane (F♯ on F, B♭ on B). The tile shows a small # or b, and the game plays the right sound.</p>
+          </div>
+          <div class="panel">
+            <h3 class="panel-title c3">TIMING</h3>
+            <p id="help-windows"></p>
+            <p>Wrong keys don't cost points. Slow songs down to 50–75% on the song screen while you learn. Change how strict the timing is in Settings.</p>
+          </div>
+          <div class="panel">
+            <h3 class="panel-title c5">MODES</h3>
+            <p><b>PART</b>: play the <b>TREBLE CLEF</b> (right hand, top staff), the <b>BASS CLEF</b> (left hand, bottom staff), or <b>BOTH</b>. Whatever you don't play is played for you, note for note from the score.</p>
+            <p>Turn on <b>Show advanced parts</b> in Settings to pick layers instead: <b>MELODY</b>, <b>ACCOMP.</b> and <b>BASS</b>, any mix of them.</p>
+            <p><b>PLAY</b> is scored. <b>PRACTICE</b> stops at each note until you press it. <b>WATCH</b> plays the song for you.</p>
+            <p><b>PIANO</b> view shows keys at the bottom. <b>LIGHTS</b> view shows only lanes that light up as tiles come.</p>
+          </div>
+          <div class="panel">
+            <h3 class="panel-title c6">YOUR OWN SONGS</h3>
+            <p>Put typed <code>.txt</code> sheets in the <code>Inputs</code> folder (inside <code>public</code>) and they appear in the song list. <b>UPLOAD SHEET</b> saves a typed sheet there for you (Chrome or Edge), and also reads MIDI and MusicXML files. A photo or PDF is shown beside the editor so you can type the notes in while you look at it.</p>
+            <p>In a sheet, <code>RH:</code>/<code>RHA:</code> lines are the treble clef, <code>LH:</code>/<code>LHA:</code>/<code>LHM:</code> lines are the bass clef. Fix anything in <b>SHEET</b> (text) or <b>ROLL</b> (grid), and save.</p>
+          </div>
+        </div>
+      </div>
+      <div id="help-credits">
+        <div class="panel credits">
+          <h3 class="panel-title c2">CREDITS</h3>
+          <p><b>Music</b>: all songs are by Ludwig van Beethoven (public domain), except the Rainbow Warm-Up. The Moonlight, Pathétique and Menuetto charts are arranged from Craig Stuart Sapp's Humdrum edition of the Beethoven piano sonatas.</p>
+          <p><b>Piano sound</b>: Acoustic Grand Piano from the FluidR3 GM soundfont by Frank Wen, via midi-js-soundfonts (Benjamin Gleitzman). CC BY 3.0.</p>
+          <p><b>Fonts</b>: Press Start 2P (CodeMan38) and DotGothic16 (Fontworks), SIL Open Font License.</p>
+          <p><b>PDF reading</b>: pdf.js by Mozilla, Apache License 2.0.</p>
+          <p>Everything runs in your browser. Nothing is uploaded anywhere.</p>
+          <p class="hint">Rainbow Keys v1-4</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXIT ============ -->
+  <section class="screen" id="screen-exit">
+    <div class="splash">
+      <h1 class="logo" aria-label="See you"></h1>
+      <p class="tag">THANKS FOR PLAYING</p>
+      <p class="hint">You can close this tab now.</p>
+      <button class="pxbtn small" data-action="menu">BACK TO MENU</button>
+    </div>
+  </section>
+</main>
+
+<div class="dropzone" id="dropzone"><div>DROP YOUR SHEET HERE</div></div>
+<div class="modal" id="modal"></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="songs/songs.js"></script>
+<script src="js/notes.js"></script>
+<script src="js/store.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/notation.js"></script>
+<script src="js/inputs.js"></script>
+<script src="js/importers.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/game.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

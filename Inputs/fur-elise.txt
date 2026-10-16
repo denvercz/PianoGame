@@ -1,0 +1,31 @@
+// Rainbow Keys song sheet (plain text). Edit it in any text editor or in the game.
+// TREBLE CLEF (right hand):  RH: = melody   RHA: = accompaniment
+// BASS CLEF (left hand):     LH: = bass line   LHA: = accompaniment   LHM: = melody
+// BG: = backing, always played for you.   perfect: 45 = this song's Perfect window in ms (default 40-50)
+// Letters are the 7 lanes; a number after a letter is its octave (C4 = middle C).
+// -  one more beat    /  half as long    .  dotted    :1/3  one third of a beat (triplet)    r  rest
+// [C E G] = notes played together.  | = bar line.  Lines starting with // are comments.
+// A blank line starts a new paragraph: all hands start it together, like a new line of printed music.
+// See "Rainbow Keys sheet guide.pdf" in this folder for everything else (unit:, time changes, ...).
+// Beethoven, Für Elise (WoO 59), main theme played twice. The D# notes sit on the D lane.
+
+title: Für Elise
+by: Ludwig van Beethoven
+tempo: 72 Poco moto
+time: 3/8
+key: C
+
+RH: r E5// D#5// | E5// D#5// E5// B// D5// C5// | A/ r// C// E// A// | B/ r// E// G#// B//
+LH: r-- A2// E3// A3// r/. | E2// E3// G#3// r/.
+
+RH: C5/ r// E// E5// D#5// | E5// D#5// E5// B// D5// C5// | A/ r// C// E// A// | B/ r// E// C5// B//
+LH: A2// E3// A3// r/. | r. | A2// E3// A3// r/. | E2// E3// G#3// r/.
+
+RH: A/ r/ E5// D#5// | E5// D#5// E5// B// D5// C5// | A/ r// C// E// A// | B/ r// E// G#// B//
+LH: A2// E3// A3// r/. | r. | A2// E3// A3// r/. | E2// E3// G#3// r/.
+
+RH: C5/ r// E// E5// D#5// | E5// D#5// E5// B// D5// C5// | A/ r// C// E// A// | B/ r// E// C5// B//
+LH: A2// E3// A3// r/. | r. | A2// E3// A3// r/. | E2// E3// G#3// r/.
+
+RH: A.
+LH: A2// E3// A3// r/.
